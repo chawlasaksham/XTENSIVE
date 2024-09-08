@@ -18,10 +18,11 @@ const dbUrl = process.env.ATLAS_URL_DB;
 const secret = process.env.SECRET ;
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    mongoUrl: dbUrl, 
     crypto: { secret: secret },
     touchAfter: 24 * 3600 
 });
+
 
 store.on("error", () => {
     console.log("Error in Mongo Store");
