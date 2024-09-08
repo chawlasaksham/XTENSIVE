@@ -15,7 +15,7 @@ const User = require("./models/user.js");
 
 const app = express();
 const dbUrl = process.env.ATLAS_URL_DB;
-const secret = process.env.SECRET || "your_default_secret";
+const secret = process.env.SECRET ;
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -71,15 +71,15 @@ app.get("/", (req, res) => {
     res.send("Root is working");
 });
 
-app.get("/register", async (req, res) => {
-    let fake = new User({
-        emailid: "stud@gamil.com",
-        username: "student",
-    });
+// app.get("/register", async (req, res) => {
+//     let fake = new User({
+//         emailid: "stud@gamil.com",
+//         username: "student",
+//     });
 
-    let registeredUser = await User.register(fake, "saksham");
-    res.send(registeredUser);
-});
+//     let registeredUser = await User.register(fake, "saksham");
+//     res.send(registeredUser);
+// });
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
