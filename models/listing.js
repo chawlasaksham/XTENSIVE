@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Review = require("./reviews");
-const User = require("./user");
+//const Review = require("./reviews");
+//const User = require("./user");
 
 
-const listingSchema = new Schema({
-  title: { 
+const ProductSchema = new Schema({
+  Product_name: { 
     type: String,
     required: true,
   },
-  description: String,
+  //description: String,
   image: {
     filename:String,
     url: String,
@@ -18,37 +18,30 @@ const listingSchema = new Schema({
     type: Number,
     min: 0 
   },
-  location: String,
-  country: String,
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref:"Review",
-    },
-  ],
+  quantity: Number,
+  sku: {
+    type: String,
+    required: true,
+    unique: true,  
+    trim: true
+},
   owner:{
     type: Schema.Types.ObjectId,
     ref:"User"
   },
-  geometry: {
-    type: {
-      type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
-      required: true
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
-  }
+  category: {
+    type: String,
+    enum: ['Electronics', 'Clothing', 'Home', 'Books', 'Toys'],
+    required: true
+  },
 });
 
-listingSchema.post("findOneAndDelete", async (listing) => {
-  if(listing){
-    await Review.deleteMany({_id: {$in: listing.reviews}});
-  }
-})
+// ProductSchema.post("findOneAndDelete", async (pr) => {
+//   if(pr){
+//     await Review.deleteMany({_id: {$in: pr.reviews}});
+//   }
+// })
 
 
-const Listing = mongoose.model("Listing", listingSchema);
-module.exports = Listing;
+const Product = mongoose.model("product", ProductSchema);
+module.exports = Product;

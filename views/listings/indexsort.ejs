@@ -80,7 +80,8 @@
     <button>Create new listing</button>
   </form> -->
 
- 
+ <%if(alllistings!=""){%>
+
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
     <% alllistings.forEach(product => { %>
     <a href="/product/<%= product._id %>" class="listing-link">
@@ -98,14 +99,10 @@
     </a>
     <% }); %>
   </div>
-  <script>
-    function categorization(v){
-    // if(v!="electronics"||v!="toys"||v!="home"||v!="clothing")
-    // {
-      if(v=="all"){console.log(`${v}`);}
-    // }
-    // else{
-      console.log(`${v}`);
-    // }
-    }
-  </script>
+  <% } else { %>
+    <img src="https://via.placeholder.com/360" alt="Not found">
+
+  <h1>oho! not found</h1>
+  <%}%>
+   
+  

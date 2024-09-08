@@ -2,21 +2,27 @@
 <body>
     <div class="row mt-3">
         <div class="col-8 offset-2">
-    <h3>edit listing</h3>
+    <h3>edit product</h3>
 
-    <form method="POST" novalidate class="needs-validation" action = "/listings/<%=listing._id%>?_method=PUT" enctype="multipart/form-data">
+    <form method="POST" novalidate class="needs-validation" action = "/product/<%=product._id%>?_method=PUT" enctype="multipart/form-data">
      <div class="mb-3">
         <lable for="title" class="form-label"> title</lable>
-        <input type="text" name="listing[title]" value = "<%= listing.title%> "placeholder="enter title" class="form-control" required>
-        <div class="invalid-feedback">please enter valid title</div>
+        <input type="text" name="product[Product_name]" value = "<%= product.Product_name%> "placeholder="enter title" class="form-control" required>
+        <div class="invalid-feedback">please enter valid Product name</div>
     </div> 
-     <br>
-
+    <br>
+    
        <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea type="text" required name="listing[description]" class="form-control" value = "<%= listing.description%> " placeholder="enter description"><%= listing.description %></textarea>
-        <div class="invalid-feedback">please enter small description</div>
+        <label for="location" class="form-label">SKU:</label>
+       <input type="text" required class="form-control" name="product[sku]" maxlength="5" pattern="\d{5}" placeholder="enter sku"  value = "<%= product.sku%>">
+       <div class="invalid-feedback">please enter valid sku</div>
        </div>
+
+       <!-- <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" required name="product[description]" class="form-control" value = "<= product.description%> " placeholder="enter description"><%= product.description %></textarea>
+        <div class="invalid-feedback">please enter small description</div>
+       </div> -->
        
        <br> 
        <div class="mb-3">
@@ -26,32 +32,41 @@
     </div>
         <div class="mb-3">
             <lable for="image" class="form-label">upload image</lable>
-            <input type="file" name="listing[image][filename]"   class="form-control" >
+            <input type="file" name="product[image][filename]"   class="form-control" >
        <div class="invalid-feedback">please enter valid image url</div>
     
         </div>
        <br> 
-
+       <div class="mb-3">
+        <label for="product[category]" class="form-label">Category</label>
+        <select name="product[category]" class="form-control" required>
+            <option value="<%= product.category%>" selected><%= product.category%></option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Home">Home</option>
+            <option value="Books">Books</option>
+            <option value="Toys">Toys</option>
+        </select>
+    </div>
+    
+        <br>
        <div class="row">
        <div class="mb-3 col-md-4">
         <lable for="price" class="form-label">Price:</lable>
-       <input type="text" required name="listing[price]" class="form-control" placeholder="enter number"  value = "<%= listing.price%> ">
+       <input type="text" required name="product[price]" class="form-control" placeholder="enter number"  value = "<%= product.price%> ">
        <div class="invalid-feedback">please enter valid price</div>
         </div>
+
        
        <br> 
-       <div class="mb-3 col-md-8">
-        <label for="country" class="form-label">country</label>
-       <input type="text" required class="form-control" name="listing[country]" placeholder="enter country"  value = "<%= listing.country%> ">
-       <div class="invalid-feedback">please enter valid country name</div>
-    </div></div>
-       <br>
-    
-       <div class="mb-3">
-        <label for="location" class="form-label">location</label>
-       <input type="text" required class="form-control" name="listing[location]" placeholder="enter location"  value = "<%= listing.location%> ">
-       <div class="invalid-feedback">please enter valid location</div>
-       </div>
+       <div class="row">
+        <div class="mb-3 col-md-4">
+         <lable for="quantity" class="form-label">quantity:</lable>
+         <input type="number" required name="product[quantity]" class="form-control" placeholder="Enter quantity" value="<%= product.quantity %>">
+
+        <div class="invalid-feedback">please enter valid quantity</div>
+         </div>
+         
        <br>  
        <button class="btn btn-dark edit-btn mb-3">edit</button>
     </form>

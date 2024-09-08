@@ -1,96 +1,124 @@
-const { response } = require("express");
-const Listing = require("../models/listing");
-const mbxgeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const map_token = process.env.map_token;
-const geocodingClient = mbxgeocoding({ accessToken: map_token });
+const Product = require('../models/listing');
 
 module.exports.index = async (req, res) => {
-    const alllistings = await Listing.find({});
-     res.render("listings/index.ejs", { alllistings });
+    try {let  loggedinuserid  = req.user._id;
+        const alllistings = await Product.find({owner:loggedinuserid});
+        console.log(alllistings);
+        res.render('listings/index.ejs', { alllistings });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
 };
 
+module.exports.indextable = async (req, res) => {
+    try {let  loggedinuserid  = req.user._id;
+        const alllistings = await Product.find({owner:loggedinuserid});
+        res.render('listings/indextable.ejs', { alllistings });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+module.exports.indextablesort = async (req, res) => {
+    try {
+        let  loggedinuserid  = req.user._id;
+        let { category } = req.params;
+        const alllistings = await Product.find({category:category , owner:loggedinuserid});
+        res.render('listings/sorttable.ejs', { alllistings });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
 module.exports.rendernewform = (req, res) => {
-    
-    
     res.render("listings/new.ejs");
 }
 
 module.exports.showlist = async (req, res) => {
     let { id } = req.params;
-    const listing= await Listing.findById(id)
-        .populate({path:"reviews",
-            populate:{path:"author",}
-        })
-        .populate("owner");
-    if(!listing){
-        req.flash("error","listing not found");
-        res.redirect("/listings");
-    }
-    //console.log(listing);
-    res.render("listings/show.ejs", { listing });
+    const product = await Product.findById(id);
+    
+    res.render("listings/show.ejs", { product });
 }
 
-module.exports.createlist = async (req, res,next) => 
-    {  let resp = await geocodingClient
-        .forwardGeocode({
-            query: req.body.listing.location,
-            limit: 1
-        })
-        .send();
-
-    //console.log(resp.body.features[0].geometry);
-      
-        let url = req.file.path;
-        let filename = req.file.filename;
-       
-    const newlisting = new Listing(req.body.listing);   
-    newlisting.owner = req.user._id;
-    newlisting.image = {url,filename};
-    newlisting.geometry = resp.body.features[0].geometry;
-     let savedlisting = await newlisting.save();
-     console.log(savedlisting);
-     req.flash("success","new listing");
-     res.redirect("/listings");   
-  }
-
-module.exports.editlist =async (req, res) => 
-    {
-     let { id } = req.params;
-     
-     const listing = await Listing.findById(id);
-     if(!listing){
-        req.flash("error","listing not found");
-        res.redirect("/listings");
+module.exports.sortlist = async (req, res) => {
+    try {
+        let  loggedinuserid  = req.user._id;
+        let { category } = req.params;
+        const alllistings = await Product.find({category:category , owner:loggedinuserid});
+        res.render('listings/indexsort.ejs', { alllistings });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
     }
-    let origurl = listing.image.url;
-    origurl = origurl.replace("/upload","/upload/w_250")
-     res.render("listings/edit.ejs", { listing ,origurl});
- }
+}
 
+module.exports.searchSku = async (req, res, next) => {
+    try{
+        let { sku } = req.query;
+        const alllistings = await Product.find({sku:sku});
+        console.log(alllistings);
+        if(alllistings==""){
+            req.flash("error", "product with this Sku id does not exist. Visit the SiteGuide for more Info");
+            res.redirect("/product");        
+        }
+        else{
+        res.render('listings/indexsort.ejs', { alllistings });}
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
- module.exports.updatelist = async (req, res) => {    
-    let { id } = req.params;
-        
-    const listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-
-    if(typeof req.file !== "undefinned"){
+module.exports.createlist = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    listing.image = {url,filename};
+    console.log(req);
+    const newProduct = new Product(req.body.product);
+    newProduct.owner = req.user._id;
+    newProduct.image = { url, filename };
+    let savedProduct = await newProduct.save();
+    console.log(savedProduct);
+    req.flash("success", "new product");
+    res.redirect("/product");
+}
 
-    await listing.save();}
-
-    req.flash("success","updated listing");
-    res.redirect(`/listings/${id}`);
- }
 
 
- 
- module.exports.deletelist = async (req, res) => {
+module.exports.editlist = async (req, res) => {
     let { id } = req.params;
-   
-    await Listing.findByIdAndDelete(id);
-    req.flash("success","deleted listing");
-    res.redirect(`/listings`);
+    const product = await Product.findById(id);
+    if (!product) {
+        req.flash("error", "product not found");
+        res.redirect("/product");
+    }
+    console.log(product);
+    let origurl = product.image.url;
+    origurl = origurl.replace("/upload", "/upload/w_250");
+    res.render("listings/edit.ejs", { product, origurl });
+}
+
+module.exports.updatelist = async (req, res) => {
+    let { id } = req.params;
+
+    const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
+    console.log(product);
+    if (typeof req.file !== "undefined") {
+        let url = req.file.path;
+        let filename = req.file.filename;
+        product.image = { url, filename };
+        await product.save();
+    }
+    console.log(req.file)
+    req.flash("success", "updated product");
+    res.redirect(`/product/${id}`);
+}
+
+module.exports.deletelist = async (req, res) => {
+    let { id } = req.params;
+    await Product.findByIdAndDelete(id);
+    req.flash("success", "deleted product");
+    res.redirect(`/product`);
 }

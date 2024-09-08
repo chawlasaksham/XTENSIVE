@@ -15,8 +15,8 @@ module.exports.signupuser = async(req,res)=>{
               return err;
           }
       
-          req.flash("success", "Welcome to Round-About");
-          res.redirect("/listings");
+          req.flash("success", "Welcome to your XTENSIVE! Inventory Let's get started!");
+          res.redirect("/product");
       })
       }
       catch(e){
@@ -28,8 +28,8 @@ module.exports.signupuser = async(req,res)=>{
   }
 
 module.exports.loginuser = async(req,res)=>{
-    req.flash("success","welcome back to Round-About");
-    const redirecturl = res.locals.redirectuser || "/listings";
+    req.flash("success", "Welcome back to XTENSIVE! Ready to manage your inventory with ease? Let's get started!");
+    const redirecturl = res.locals.redirectuser || "/product";
     res.redirect(redirecturl);
  }
 
@@ -43,6 +43,6 @@ module.exports.logoutuser =(req,res,next)=>{
             next();
         }
         req.flash("success","you are logged out");
-        res.redirect("/listings");
+        res.redirect("/login");
     })
 }

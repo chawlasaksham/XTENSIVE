@@ -1,65 +1,89 @@
 const express = require("express");
-const wrapasync = require("../utils/wrapasync");
 const wrapAsync = require("../utils/wrapasync");
-
-const Listing = require("../models/listing");
 const router = express.Router();
-const {isloggedin, isOwner,validatelisting}= require("../views/middleware.js");
+const { isloggedin, isOwner, validatelisting } = require("../views/middleware.js");
 const listingcontroller = require("../controller/listings.js");
-const multer  = require('multer');
-const {storage}= require("../cloudconfig.js");
-
+const multer = require('multer');
+const { storage } = require("../cloudconfig.js");
 
 const upload = multer({ storage });
 
+// Route for listing index and creating a listing
 router
    .route("/")
-   //index routes
-   .get(wrapAsync (listingcontroller.index))
-   //Create route
+   // Index route
+   .get(
+      isloggedin,
+      wrapAsync(listingcontroller.index))
+   // Create route
    .post(
       isloggedin,
-      upload.single('listing[image][filename]'),
+      upload.single('product[image]'), // Ensure this matches the form field name
       validatelisting,
-      wrapAsync(listingcontroller.createlist));
-   
+      wrapAsync(listingcontroller.createlist)
+   );
 
-// New route
-router.get("/new",isloggedin,listingcontroller.rendernewform );
+router
+   .route("/display/table")
+   // Index route
+   .get(
+   isloggedin,
+   wrapAsync(listingcontroller.indextable))
 
 
 
 router
-   .route("/:id")   
+   .route("/:category/sort")
+   // Index route for sorting
+   .get(
+      isloggedin,
+      wrapAsync(listingcontroller.sortlist));
 
+
+router
+      .route("/:category/sort/table")
+      // Index route for sorting
+      .get(
+         isloggedin,
+         wrapAsync(listingcontroller.indextablesort));
+   
+
+router
+   .route("/search/:sku")
+   // Index route for searching
+   .get(
+      isloggedin,
+      wrapAsync(listingcontroller.searchSku));
+
+// Route to render the new listing form
+router.get("/new", isloggedin, listingcontroller.rendernewform);
+
+// Routes for individual listings by ID
+router
+   .route("/:id")
    // Show route
-   .get(wrapasync(listingcontroller.showlist))
-
-   //update
+   .get(wrapAsync(listingcontroller.showlist))
+   // Update route
    .put(
-   isloggedin,
-   isOwner,
-   upload.single('listing[image][filename]'),
-   validatelisting, 
-   wrapAsync(listingcontroller.updatelist))
-
+      isloggedin,
+      isOwner,
+      upload.single('product[image][filename]'), // Ensure this matches the form field name
+      validatelisting,
+      wrapAsync(listingcontroller.updatelist)
+   )
    // Delete route
    .delete(
       isloggedin,
       isOwner,
-      wrapasync(listingcontroller.deletelist));
+      wrapAsync(listingcontroller.deletelist)
+   );
 
+// Route to render the edit form for a listing
+router.get(
+   "/:id/edit",
+   isloggedin,
+   isOwner,
+   wrapAsync(listingcontroller.editlist)
+);
 
-
-
-
- 
- // Edit Route
- router.get(
-    "/:id/edit",
-    isloggedin,
-    isOwner,
-    
-    wrapasync(listingcontroller.editlist));
- 
 module.exports = router;

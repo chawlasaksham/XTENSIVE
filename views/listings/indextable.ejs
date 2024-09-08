@@ -1,0 +1,107 @@
+<% layout("listings/layouts/boilerplate") %>
+<body>
+  <style>
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter:hover {
+      opacity: 1;
+     
+    }
+    .filter {
+      text-align: center;
+      margin-right: 2rem;
+      opacity: 0.7;
+      font-size: 0.8rem;
+     
+    }
+    .filter-HEAD {
+      text-align: center;
+      margin-right: 2rem;
+      opacity: 1;
+      font-size: 0.8rem;
+     
+    }
+    
+    body{
+      color: #415364;
+    }
+    .product-filters{
+      text-decoration: none;
+      color: #415364;
+    }
+    .product-filters:hover{
+      color: #d6006d;
+    }
+    .fa-bolt{
+      color: #d6006d;
+    }
+  </style>
+  
+  <div id="filters">
+    <div  class="filter-HEAD">
+      <div>
+      <p><i class="fa-solid fa-bolt"></i>ORT Table :</p></a></div>
+    </div>
+    <div  class="filter">
+      <a href="/product/Electronics/sort/table" class="product-filters">
+      <div><i class="fa-solid fa-tv"></i></div>
+      <p>Electronics</p></a>
+    </div>
+    <div class="filter">
+      <a href="/product/Toys/sort/table" class="product-filters">
+      <div><i class="fa-solid fa-gamepad"></i></div>
+      <p>Toys</p>
+    </a>
+    </div>
+    <div class="filter">
+      <a href="/product/Home/sort/table" class="product-filters">
+      <div><i class="fa-solid fa-house"></i></div>
+      <p>Home</p></a>
+    </div>
+    <div class="filter">
+      <a href="/product/Clothing/sort/table" class="product-filters">
+      <div><i class="fa-solid fa-shirt"></i></div>
+      <p>Clothing</p></a>
+    </div>
+    <div class="filter">
+      <a href="/product/Books/sort/table" class="product-filters">
+      <div><i class="fa-solid fa-book"></i></div>
+      <p>Books</p></a>
+    </div>
+  </div>
+
+
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">SKU ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%let i = 1;%>
+        <% alllistings.forEach(product => { %>
+            <tr onclick="window.location.href='/product/<%= product._id %>'" style="cursor:pointer;">
+            <th scope="row"><%= i++ %></th>
+            <td><%= product.sku %></td>
+            <td><%= product.Product_name %></td>
+            <td>&#8377 <%= product.price ? product.price.toLocaleString("en-IN") : "N/A"%> </td>
+            <td><%= product.quantity %></td>
+            <td><%= product.category %></td>
+        </tr>
+        <% }); %>
+        
+    </tbody>
+  </table>
+ 
+ 
+   
+   

@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary:cloudinary,
     params:{
-        folder:"round_about_dev",
+        folder:"Xtensive_dev",
         allowedFormats:["png","jpg","jpeg"],
 
     },
