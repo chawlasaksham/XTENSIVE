@@ -69,7 +69,7 @@ app.engine('ejs', ejsmate);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.send("Root is working");
+    res.redirect("/product");
 });
 
 // app.get("/register", async (req, res) => {
