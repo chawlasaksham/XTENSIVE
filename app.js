@@ -1,4 +1,4 @@
-let a=0;
+let a=1;
 if(a==0){require('dotenv').config();}//set for development
 
 const express = require("express");
