@@ -73,12 +73,6 @@
     </div>
   </div>
 
-  <!-- <h3 style="font-family: 'Times New Roman', Times, serif; color: #af232c;">Welcome to ROUND-ABOUT!!</h3>
-  <p id="typing-text" style="font-family: 'Times New Roman', Times, serif;"></p> -->
-  
-  <!-- <form method="get" action="/product/new">
-    <button>Create new listing</button>
-  </form> -->
 
  <%if(alllistings!=""){%>
 
@@ -100,9 +94,16 @@
     <% }); %>
   </div>
   <% } else { %>
-    <img src="https://via.placeholder.com/360" alt="Not found">
+    <div style=" text-align: center;"><img src="https://plus.unsplash.com/premium_photo-1682310096066-20c267e20605?q=80&w=1824&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style=" border-radius: 2rem; opacity: 0.8;" class="show-img" alt="error image for having no listing created">
 
-  <h1>oho! not found</h1>
+    <h2 style="font-family: 'Helvetica Neue', sans-serif; color: #d6006d;">
+      Uh-oh! Looks like we're all out of stock!<br>
+      Why not add a product and get things rolling?
+   </h2>
+   <p style="font-family: 'Courier New', monospace; color: #333; text-align: center;">
+      (Psst... Don't worry, your perfect match is just a product away!)
+   </p>
+  </div>
   <%}%>
    
   

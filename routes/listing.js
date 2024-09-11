@@ -83,7 +83,13 @@ router.get(
    "/:id/edit",
    isloggedin,
    isOwner,
-   wrapAsync(listingcontroller.editlist)
+   wrapAsync(listingcontroller.siteguide)
+);
+
+router.get(
+   "/help/guide",
+   isloggedin,
+   wrapAsync(listingcontroller.siteguide)
 );
 
 module.exports = router;

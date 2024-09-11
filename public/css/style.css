@@ -4,11 +4,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-      font-family: "Plus Jakarta Sans", sans-serif !important;
-      /* font-optical-sizing: auto; */
-      /* font-weight: 400; */
-      /* font-style: normal; */
-   
+      font-family: "Plus Jakarta Sans", sans-serif !important;   
 } 
 .container{
     flex: 1;
@@ -100,7 +96,7 @@ margin-bottom: 2rem;
 .edit-btn{
     background-color: #d6006d !important;
     border: none !important;
-
+    margin-top: 1rem;
 }
 
 .show-img{
@@ -108,14 +104,9 @@ margin-bottom: 2rem;
 }
 .btns{
     display: flex;
+
 }
 .show-card{
     padding-left: 0;
     padding-right: 0;
-}
-
-/* map */
-#map { 
-   height: 300px;
-   width: 100vh;
 }

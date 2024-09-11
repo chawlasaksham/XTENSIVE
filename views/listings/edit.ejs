@@ -2,11 +2,11 @@
 <body>
     <div class="row mt-3">
         <div class="col-8 offset-2">
-    <h3>edit product</h3>
-
+    <h3>Edit Product</h3>
+            <br>
     <form method="POST" novalidate class="needs-validation" action = "/product/<%=product._id%>?_method=PUT" enctype="multipart/form-data">
      <div class="mb-3">
-        <lable for="title" class="form-label"> title</lable>
+        <lable for="title" class="form-label"> Product name</lable>
         <input type="text" name="product[Product_name]" value = "<%= product.Product_name%> "placeholder="enter title" class="form-control" required>
         <div class="invalid-feedback">please enter valid Product name</div>
     </div> 
@@ -18,11 +18,6 @@
        <div class="invalid-feedback">please enter valid sku</div>
        </div>
 
-       <!-- <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea type="text" required name="product[description]" class="form-control" value = "<= product.description%> " placeholder="enter description"><%= product.description %></textarea>
-        <div class="invalid-feedback">please enter small description</div>
-       </div> -->
        
        <br> 
        <div class="mb-3">
@@ -31,7 +26,7 @@
         <img src="<%= origurl%>" alt="loading....">
     </div>
         <div class="mb-3">
-            <lable for="image" class="form-label">upload image</lable>
+            <lable for="image" class="form-label">Upload Image</lable>
             <input type="file" name="product[image][filename]"   class="form-control" >
        <div class="invalid-feedback">please enter valid image url</div>
     
@@ -54,14 +49,14 @@
        <div class="mb-3 col-md-4">
         <lable for="price" class="form-label">Price:</lable>
        <input type="text" required name="product[price]" class="form-control" placeholder="enter number"  value = "<%= product.price%> ">
-       <div class="invalid-feedback">please enter valid price</div>
+       <div class="invalid-feedback">Please enter valid price</div>
         </div>
 
        
        <br> 
        <div class="row">
         <div class="mb-3 col-md-4">
-         <lable for="quantity" class="form-label">quantity:</lable>
+         <lable for="quantity" class="form-label">QSuantity:</lable>
          <input type="number" required name="product[quantity]" class="form-control" placeholder="Enter quantity" value="<%= product.quantity %>">
 
         <div class="invalid-feedback">please enter valid quantity</div>

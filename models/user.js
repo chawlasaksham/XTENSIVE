@@ -11,7 +11,7 @@ const UserSchema = new Schema({
     }     
 
 });
-
+// passport has been user for hashing and creating userid 
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);

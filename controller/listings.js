@@ -3,7 +3,6 @@ const Product = require('../models/listing');
 module.exports.index = async (req, res) => {
     try {let  loggedinuserid  = req.user._id;
         const alllistings = await Product.find({owner:loggedinuserid});
-        console.log(alllistings);
         res.render('listings/index.ejs', { alllistings });
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -59,7 +58,7 @@ module.exports.searchSku = async (req, res, next) => {
     try{
         let { sku } = req.query;
         const alllistings = await Product.find({sku:sku});
-        console.log(alllistings);
+        
         if(alllistings==""){
             req.flash("error", "product with this Sku id does not exist. Visit the SiteGuide for more Info");
             res.redirect("/product");        
@@ -75,12 +74,12 @@ module.exports.searchSku = async (req, res, next) => {
 module.exports.createlist = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    console.log(req);
+    
     const newProduct = new Product(req.body.product);
     newProduct.owner = req.user._id;
     newProduct.image = { url, filename };
     let savedProduct = await newProduct.save();
-    console.log(savedProduct);
+   
     req.flash("success", "new product");
     res.redirect("/product");
 }
@@ -94,7 +93,7 @@ module.exports.editlist = async (req, res) => {
         req.flash("error", "product not found");
         res.redirect("/product");
     }
-    console.log(product);
+   
     let origurl = product.image.url;
     origurl = origurl.replace("/upload", "/upload/w_250");
     res.render("listings/edit.ejs", { product, origurl });
@@ -104,14 +103,14 @@ module.exports.updatelist = async (req, res) => {
     let { id } = req.params;
 
     const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
-    console.log(product);
+    
     if (typeof req.file !== "undefined") {
         let url = req.file.path;
         let filename = req.file.filename;
         product.image = { url, filename };
         await product.save();
     }
-    console.log(req.file)
+    
     req.flash("success", "updated product");
     res.redirect(`/product/${id}`);
 }
@@ -122,3 +121,7 @@ module.exports.deletelist = async (req, res) => {
     req.flash("success", "deleted product");
     res.redirect(`/product`);
 }
+module.exports.siteguide = async (req, res) => {
+    res.render('listings/guide.ejs');
+}
+

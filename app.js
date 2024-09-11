@@ -1,4 +1,5 @@
-
+let a=0;
+if(a==0){require('dotenv').config();}//set for development
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -18,11 +19,10 @@ const dbUrl = process.env.ATLAS_URL_DB;
 const secret = process.env.SECRET ;
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl, 
+    mongoUrl: dbUrl,
     crypto: { secret: secret },
     touchAfter: 24 * 3600 
 });
-
 
 store.on("error", () => {
     console.log("Error in Mongo Store");
@@ -72,16 +72,7 @@ app.get("/", (req, res) => {
     res.redirect("/product");
 });
 
-// app.get("/register", async (req, res) => {
-//     let fake = new User({
-//         emailid: "stud@gamil.com",
-//         username: "student",
-//     });
-
-//     let registeredUser = await User.register(fake, "saksham");
-//     res.send(registeredUser);
-// });
-
+//used flash to flash error and success messages
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -93,6 +84,7 @@ app.use((req, res, next) => {
 app.use("/product", listingsRouter);
 app.use("/", usersRouter);
 
+//middleware for errors
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found"));
 });

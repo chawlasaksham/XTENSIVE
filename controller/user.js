@@ -15,7 +15,7 @@ module.exports.signupuser = async(req,res)=>{
               return err;
           }
       
-          req.flash("success", "Welcome to your XTENSIVE! Inventory Let's get started!");
+          req.flash("success", "Welcome to XTENSIV! Ready to manage your inventory with ease? Let's get started!");
           res.redirect("/product");
       })
       }
@@ -28,7 +28,7 @@ module.exports.signupuser = async(req,res)=>{
   }
 
 module.exports.loginuser = async(req,res)=>{
-    req.flash("success", "Welcome back to XTENSIVE! Ready to manage your inventory with ease? Let's get started!");
+    req.flash("success", "Welcome back to XTENSIV! Ready to manage your inventory with ease? Let's get started!");
     const redirecturl = res.locals.redirectuser || "/product";
     res.redirect(redirecturl);
  }

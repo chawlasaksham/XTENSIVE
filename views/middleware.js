@@ -1,8 +1,7 @@
 const product = require("../models/listing");
-const expresserror = require("../utils/expresserror");
 const { productSchema } = require("../schema.js");
-//const Review = require("../models/reviews.js");
-//const { reviewSchema } = require("../schema.js");
+
+//checks is the user is logged in or not
 
 module.exports.isloggedin = (req,res,next) =>{
     if(!req.isAuthenticated()){
@@ -13,6 +12,8 @@ module.exports.isloggedin = (req,res,next) =>{
     next();
 }
 
+// session is used to save the current login info of user!!
+
 module.exports.savedredirecturl = (req,res,next)=>{
     if(req.session.redirecturl){
 
@@ -20,7 +21,8 @@ module.exports.savedredirecturl = (req,res,next)=>{
     next();
 }
 
-//for seeing if user is qwner of listing 
+//for seeing if user is ownner of listing 
+
 module.exports.isOwner = async(req,res,next)=>{
   let { id } = req.params;
         let list = await product.findById(id);
@@ -31,18 +33,8 @@ module.exports.isOwner = async(req,res,next)=>{
         next();
 }
 
+//check is the entered datails of procduct matches with schema
 
-// module.exports.validatelisting = (req,res,next) =>{
-//   let {error} = listingSchema.validate(req.body);
-//   if(error){
-//       let errmsg = error.details.map((el) =>el.message).join(",");
-//       console.log(errmsg);
-//       throw new expresserror(400,errmsg);
-//   }
-//   else{
-//       next();
-//   }
-// }
 module.exports.validatelisting = (req, res, next) => {
   const { error } = productSchema.validate(req.body);
   if (error) {
@@ -55,24 +47,3 @@ module.exports.validatelisting = (req, res, next) => {
 };
 
 
-// module.exports.validatereview = (req,res,next) =>{
-//   let {error} = reviewSchema.validate(req.body);
-//   if(error){
-//       let errmsg = error.details.map((el) =>el.message).join(",");
-//       console.log(errmsg);
-//       throw new expresserror(400,errmsg);
-//   }
-//   else{
-//       next();
-//   }
-// }
-
-// module.exports.isreviewauthor = async(req,res,next)=>{
-//   let { id,reviewId } = req.params;
-//         let review = await Review.findById(reviewId);
-//         if( !review.author.equals(res.locals.curruser._id)){
-//             req.flash("error","you have no permission to delete it");
-//         return res.redirect(`/listings/${id}`);
-//         }
-//         next();
-// }
