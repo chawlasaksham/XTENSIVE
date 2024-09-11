@@ -2,6 +2,18 @@
 
 [XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access.
 
+## For a better user experience use the following ID 
+
+Please make sure to **avoid using LAN connections**, as they might block some images from loading. 
+
+**Important:**
+
+- **Username**: `demo`
+- **Password**: `demo123`
+
+Use the credentials above to log in and explore the app or u can create one to start your inventory now.
+
+
 ## Features
 
 - **Add Products**: Easily add new products to your inventory by providing details like name, SKU, capacity, quantity, and price.
