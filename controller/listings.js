@@ -121,7 +121,4 @@ module.exports.deletelist = async (req, res) => {
     req.flash("success", "deleted product");
     res.redirect(`/product`);
 }
-module.exports.siteguide = async (req, res) => {
-    res.render('listings/guide.ejs');
-}
 

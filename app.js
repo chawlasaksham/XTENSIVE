@@ -84,6 +84,9 @@ app.use((req, res, next) => {
 app.use("/product", listingsRouter);
 app.use("/", usersRouter);
 
+app.get("/siteguide",(req,res) =>{ 
+    res.render('listings/guide.ejs');
+});
 //middleware for errors
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found"));

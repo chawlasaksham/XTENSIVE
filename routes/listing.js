@@ -86,10 +86,4 @@ router.get(
    wrapAsync(listingcontroller.editlist)
 );
 
-router.get(
-   "/help/site/guide",
-   isloggedin,
-   wrapAsync(listingcontroller.siteguide)
-);
-
 module.exports = router;
