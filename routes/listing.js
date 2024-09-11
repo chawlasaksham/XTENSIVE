@@ -87,7 +87,7 @@ router.get(
 );
 
 router.get(
-   "/help/guide",
+   "/help/site/guide",
    isloggedin,
    wrapAsync(listingcontroller.siteguide)
 );
