@@ -83,7 +83,7 @@ router.get(
    "/:id/edit",
    isloggedin,
    isOwner,
-   wrapAsync(listingcontroller.siteguide)
+   wrapAsync(listingcontroller.editlist)
 );
 
 router.get(
