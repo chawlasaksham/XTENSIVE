@@ -1,6 +1,6 @@
 # XTENSIV
 
-[XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access. it build with **MVC** pattern.
+[XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access. It is build with **MVC** pattern.
 
 #### XTENSIV HAS BEEN DEPLOYED ON RENDER (https://xtensive.onrender.com)
 
@@ -19,7 +19,8 @@ Use the credentials above to log in and explore the app or u can create one to s
 
 To run the project,
 #### clone the repository
-
+#### use command to go in particular directory
+- cd XTENSIVE
 #### you can use database at atlas data-base by creating your own account at cloudinar and atlas database
 #### or you can directly use init.js to initialize mongo database and run it locally
 
@@ -34,8 +35,8 @@ you will need to create a `.env` file in the root directory and provide your own
 - CLOUD_API_KEY= your_own_cloud_api_key
 - CLOUD_API_SECRET= your own_cloud_api_secret
 
--ATLAS_URL_DB=mongodb+srv://<username>:<password>@<clustername>.stgjz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster-name>
--SECRET=<anystring>
+- ATLAS_URL_DB=mongodb+srv://<username>:<password>@<clustername>.stgjz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster-name>
+- SECRET=<anystring>
 
 #### also in app.js make a = 0 so that it come back at development phase!!
 
@@ -96,6 +97,23 @@ you will need to create a `.env` file in the root directory and provide your own
 
 - User and admin authentication enhancements
 - Integration of React into the project
+
+## Features of each file
+
+### controller
+it contains the function that to be performend whaen a route recieve request
+it is further divided into two
+- listing.js: it has functionality for adding, deleting etc.. commands.
+- user.js: it has  functionality for login, logout and signup commands.
+### init
+It contains the data for initializing mongodb database on local system
+
+### models
+It contains the listing and user schema
+
+### public
+- Has basic css and validation.js for the webpage
+- Validation.js is used for schema validation
 
 ## Contact
 
