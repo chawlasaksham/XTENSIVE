@@ -1,6 +1,6 @@
 # XTENSIV
 
-[XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access.
+[XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access. it build with **MVC** pattern.
 
 #### XTENSIV HAS BEEN DEPLOYED ON RENDER (https://xtensive.onrender.com)
 
@@ -30,12 +30,12 @@ To run the project,
   
 ### Environment Variables
 you will need to create a `.env` file in the root directory and provide your own values for the following variables (you can copy the structure given below nad enter your own details):
-CLOUD_NAME=<your cloud name>
-CLOUD_API_KEY=<your own cloud api key>
-CLOUD_API_SECRET=<your own cloud api secret>
+- CLOUD_NAME= your_cloud_name
+- CLOUD_API_KEY= your_own_cloud_api_key
+- CLOUD_API_SECRET= your own_cloud_api_secret
 
-ATLAS_URL_DB=mongodb+srv://<username>:<password>@<clustername>.stgjz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster-name>
-SECRET=<anystring>
+-ATLAS_URL_DB=mongodb+srv://<username>:<password>@<clustername>.stgjz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster-name>
+-SECRET=<anystring>
 
 #### also in app.js make a = 0 so that it come back at development phase!!
 
@@ -90,7 +90,8 @@ SECRET=<anystring>
 - **Bootstrap**: Frontend framework for styling
 - **Atlas**: For cloud database storage (uses AWS and Cloudinary for image URLs)
 - **Render**: For deploying the project
-
+- **multer**: used for uploading files
+  
 ## Future Changes
 
 - User and admin authentication enhancements
