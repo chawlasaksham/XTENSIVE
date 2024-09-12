@@ -126,6 +126,9 @@ It contains the listing and user schema
 ### app.js
 - it is the main file that runs the website basically it gives the cloud related information and the route related information
 
+### cloudconfig
+- contains the code for connecting cloud.
+
 ### schema.js
 - it contains joi that validates data entered by user it is according to the format.
 
