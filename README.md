@@ -19,9 +19,11 @@ Use the credentials above to log in and explore the app or u can create one to s
 
 To run the project,
 #### clone the repository
+- git clone https://github.com/chawlasaksham/XTENSIVE.git
+
 #### use command to go in particular directory
 - cd XTENSIVE
-#### you can use database at atlas data-base by creating your own account at cloudinar and atlas database
+#### you can use database at atlas data-base by creating your own account at cloudinary and atlas database
 #### or you can directly use init.js to initialize mongo database and run it locally
 
 #### write command in terminal :
