@@ -92,6 +92,7 @@ you will need to create a `.env` file in the root directory and provide your own
 - **Atlas**: For cloud database storage (uses AWS and Cloudinary for image URLs)
 - **Render**: For deploying the project
 - **multer**: used for uploading files
+- **Joi** : used for schema validation 
   
 ## Future Changes
 
@@ -105,6 +106,7 @@ it contains the function that to be performend whaen a route recieve request
 it is further divided into two
 - listing.js: it has functionality for adding, deleting etc.. commands.
 - user.js: it has  functionality for login, logout and signup commands.
+
 ### init
 It contains the data for initializing mongodb database on local system
 
@@ -114,6 +116,18 @@ It contains the listing and user schema
 ### public
 - Has basic css and validation.js for the webpage
 - Validation.js is used for schema validation
+
+### listings
+- it has all the ejs pages for separate task .
+-  Boilerpalte.ejs is the main page that define how all the other pages are shown.
+-  index.ejs is dasboard where all the products are displayed and similarly there are all the other ejs files...
+- middleware.js has all validation related middleware that helps in validating owner,login and schemavalidation services.
+
+### app.js
+- it is the main file that runs the website basically it gives the cloud related information and the route related information
+
+### schema.js
+- it contains joi that validates data entered by user it is according to the format.
 
 ## Contact
 
