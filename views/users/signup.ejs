@@ -1,11 +1,11 @@
 <% layout("listings/layouts/boilerplate")%>
 <div class="row">
-    <h1 class="col-6 offset-3">SIGN UP</h1>
+    <div style="display: flex;"><h1 class="col-6 offset-3" style="color: #d6006D;">SIGN UP <span > <a style="color: #000; text-decoration: none;" href="/login"> / LOG IN</span></h1></a></div>
     <div class="col-6 offset-3">
         <form action="/signup" method="post" class="needs-validation" novalidate>
             
             <div class="mb-3">
-                <lable for="username" class="form-label">username</lable>
+                <lable for="username" class="form-label">Username</lable>
                 <input type="text"
                 id="username" 
                 name="username" 
@@ -16,7 +16,7 @@
             </div>
 
             <div class="mb-3">
-                <lable for="email" class="form-label">email</lable>
+                <lable for="email" class="form-label">Email</lable>
                 <input type="email"
                 id="email" 
                 name="email" 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="mb-3">
-                <lable for="password" class="form-label">password</lable>
+                <lable for="password" class="form-label">Password</lable>
                 <input type="password"
                 id="password" 
                 name="password" 

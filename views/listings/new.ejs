@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-8 offset-2">
 <body>
-    <h3>Create a new product</h3>
+    <h2 style="color: #d6006d;">Create a new product</h2>
     <br><br>
     <form method="post" action="/product" enctype="multipart/form-data">
         <div class="mb-3">
@@ -13,6 +13,7 @@
         <div class="mb-3">
             <label for="product[sku]" class="form-label">SKU</label>
             <input type="text" pattern="\d{5}" maxlength="5" name="product[sku]" placeholder="Enter SKU" class="form-control" required>
+            <h6 style="font-size: x-small;">**Please note that SKU should be unique and should be a five digit number.</h6>
         </div>
     
         <div class="mb-3">
@@ -27,7 +28,8 @@
     
         <div class="mb-3">
             <label for="product[image]" class="form-label">Image</label>
-            <input type="file" name="product[image]" class="form-control">
+            <input type="file" name="product[image]" class="form-control" required>
+            <h6 style="font-size: x-small;">**Format should be jpg, png and jpeg only</h6>
         </div>
         <div class="mb-3">
             <label for="product[category]" class="form-label">Category</label>

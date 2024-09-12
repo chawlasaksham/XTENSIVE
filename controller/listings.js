@@ -80,7 +80,7 @@ module.exports.createlist = async (req, res, next) => {
     newProduct.image = { url, filename };
     let savedProduct = await newProduct.save();
    
-    req.flash("success", "new product");
+    req.flash("success", "NEW PRODUCT CREATED");
     res.redirect("/product");
 }
 
@@ -111,14 +111,14 @@ module.exports.updatelist = async (req, res) => {
         await product.save();
     }
     
-    req.flash("success", "updated product");
+    req.flash("success", "Updated Product");
     res.redirect(`/product/${id}`);
 }
 
 module.exports.deletelist = async (req, res) => {
     let { id } = req.params;
     await Product.findByIdAndDelete(id);
-    req.flash("success", "deleted product");
+    req.flash("success", "Deleted Product");
     res.redirect(`/product`);
 }
 
