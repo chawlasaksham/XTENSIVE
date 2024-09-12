@@ -15,6 +15,29 @@
 
 Use the credentials above to log in and explore the app or u can create one to start your inventory now.
 
+## build commands
+
+To run the project,
+#### clone the repository
+
+#### you can use database at atlas data-base by creating your own account at cloudinar and atlas database
+#### or you can directly use init.js to initialize mongo database and run it locally
+
+#### write command in terminal :
+- npm install
+#### then write :
+- nodemon app.js or node app.js (ensure to install the node.js from chrome)
+  
+### Environment Variables
+you will need to create a `.env` file in the root directory and provide your own values for the following variables (you can copy the structure given below nad enter your own details):
+CLOUD_NAME=<your cloud name>
+CLOUD_API_KEY=<your own cloud api key>
+CLOUD_API_SECRET=<your own cloud api secret>
+
+ATLAS_URL_DB=mongodb+srv://<username>:<password>@<clustername>.stgjz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster-name>
+SECRET=<anystring>
+
+#### also in app.js make a = 0 so that it come back at development phase!!
 
 ## Features
 
