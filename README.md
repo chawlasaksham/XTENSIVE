@@ -2,7 +2,7 @@
 
 [XTENSIV](https://xtensive.onrender.com) is a simple inventory management website that allows users to **add, view, edit, delete, sort**, and **search products**. It also includes **user authentication** to ensure secure access.
 
-## XTENSIV HAS BEEN DEPLOYED ON RENDER (https://xtensive.onrender.com)
+#### XTENSIV HAS BEEN DEPLOYED ON RENDER (https://xtensive.onrender.com)
 
 ## For a better user experience use the following ID 
 
